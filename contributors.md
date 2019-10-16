@@ -14,3 +14,6 @@
 * 2nd Yr Aero & Astro Engineering
 * SUSF Robotics & Software Project co-lead
 * Olympus-Rover-*
+  * Rover electronics design
+  * Phobos mechanical design
+  * Low level software
