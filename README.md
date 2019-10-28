@@ -94,3 +94,30 @@ roverAtt_rot_LmToRb = np.linalg.inv(roverAtt_dcm_LmToRb)
 # https://en.wikipedia.org/wiki/Active_and_passive_transformation for more info.
 roverAtt_rot_LmToRb = np.linalg.inv(roverAtt_dcm_LmToRb)
 ```
+
+### Notes on numerical protection
+
+When a numerical problem can occur (say a division by zero) you should write a short comment explaining what could go wrong, and what you are doing to prevent that from happening. This is to force you to think about the code you are writing so that we don't get random crashes in the software.
+
+```python
+# Bad:
+#   No comment and no protection, what if we're at the target already?
+
+timeToTarget_s = roverSpeed_mss_Lm / targetDist_m_Lm
+
+# Good:
+#   Detailed, but not exhaustive description of the problem, and a sensible 
+#   protection used
+
+# Numerical protection note:
+#   The operation "= ... / targetDist_m_Lm" can result in a division by zero if
+#   the rover is at or close to the target. To protect against this we say that
+#   if the rover is within the target threshold the time to the target is zero.
+#   The threshold has been defined as some value strictly greater than zero, 
+#  therfore division by zero cannot occur.
+if (targetDist_m_Lm < targetThreshold_m_Lm):
+    timeToTarget_s = 0
+else:
+    timeToTarget = roverSpeed_mss_Lm / targetDist_m_Lm
+
+```
