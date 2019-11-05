@@ -2,7 +2,7 @@
 
 ## Repo Structure
 
-Each active repository (excluding this one) must have 3 branches:
+Each active repository (excluding this one) must have at least 3 branches:
 
 1. master
 1. production
